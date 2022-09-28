@@ -1,0 +1,89 @@
+{"CV": {  
+  "id": "example-000",
+  "name": "example-000",
+  "firstName": "example-000",
+  "birthDate": "example-000",
+  "pictureName": "example-000",
+  "phone": "example-000",
+  "email": "example-000",
+  "country": "example-000",
+  "state": "example-000",
+  "city": "example-000",
+  "npa": "example-000",
+  "address": "example-000",
+  "housenumber": "example-000",
+  "allSections": [
+    [{
+        "fieldType":"section",
+        "fieldData":[
+            [{
+                "fieldType":"title",
+                "fieldData":"section 1 title",
+                "fieldCustomisation":null
+            }],
+            [{
+                "fieldType":"text",
+                "fieldData":"section 1 textfield 1 text",
+                "fieldCustomisation":{
+                    "color":"#ff0000",
+                    "font-size":"15pt",
+                    "font-weight":"800"
+                }
+            }],[{
+                "fieldType":"image",
+                "fieldData":"url",
+                "imageTitle":"The image title",
+                "fieldCustomisation":null
+            }],[{
+                "fieldType":"list",
+                "fieldData":["element1","element2","element3","element4","element5"],
+                "listTitle":"the list title",
+                "fieldCustomisation":null
+            }],[{
+                "fieldType":"link",
+                "fieldData":"www.google.ch",
+                "linkTitle":"The link title (google)",
+                "fieldCustomisation":null
+            }]
+        ],
+        "fieldCustomisation":null
+    }],[{
+        "fieldType":"section",
+        "fieldData":[[{
+                "fieldType":"title",
+                "fieldData":"sub-section title",
+                "fieldCustomisation":null
+            }],
+            [{
+                "fieldType":"text",
+                "fieldData":"sub-section 1 textfield 1 text",
+                "fieldCustomisation":{
+                    "color":"#ff0000",
+                    "font-size":"15pt",
+                    "font-weight":"800"
+                }
+            }],[{
+                "fieldType":"section",
+                "fieldData":[[{
+                        "fieldType":"title",
+                        "fieldData":"sub-sub-section 1 title",
+                        "fieldCustomisation":null
+                    }],
+                    [{
+                        "fieldType":"text",
+                        "fieldData":"sub-sub-secsection 1 textfield 1 text",
+                        "fieldCustomisation":{
+                            "color":"#ff0000",
+                            "font-size":"15pt",
+                            "font-weight":"800"
+                        }
+                    }]
+                
+                ],
+                "fieldCustomisation":null
+            }]
+        
+        ],
+        "fieldCustomisation":null
+    }]]
+}}  
