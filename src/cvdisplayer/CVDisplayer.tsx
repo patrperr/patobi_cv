@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import { jsonToObject } from '../toolbox/jsonManager'
 
 
 export class CVDisplayer extends Component {
 
 
   render() {
+    let test = jsonToObject("");
+    console.log();
+    
     return (
         <div>
           {
@@ -14,6 +18,7 @@ export class CVDisplayer extends Component {
 
 
           <p>CVDisplayer</p>
+          <p></p>
           
           {
           //! remove me!

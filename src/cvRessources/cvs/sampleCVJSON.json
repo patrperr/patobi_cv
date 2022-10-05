@@ -1,4 +1,4 @@
-{"CV": {  
+{  
   "id": "example-000",
   "name": "Dassault",
   "firstName": "Marcel",
@@ -18,12 +18,12 @@
         "fieldData":[
             [{
                 "fieldType":"title",
-                "fieldData":"section 1 title",
+                "fieldData":["section 1 title"],
                 "fieldCustomisation":null
             }],
             [{
                 "fieldType":"text",
-                "fieldData":"section 1 textfield 1 text",
+                "fieldData":["section 1 textfield 1 text"],
                 "fieldCustomisation":{
                     "color":"#ff0000",
                     "font-size":"15pt",
@@ -31,18 +31,18 @@
                 }
             }],[{
                 "fieldType":"image",
-                "fieldData":"url",
-                "imageTitle":"The image title",
+                "fieldData":["url"],
+                "title":"The image title",
                 "fieldCustomisation":null
             }],[{
                 "fieldType":"list",
                 "fieldData":["element1","element2","element3","element4","element5"],
-                "listTitle":"the list title",
+                "title":"the list title",
                 "fieldCustomisation":null
             }],[{
                 "fieldType":"link",
-                "fieldData":"www.google.ch",
-                "linkTitle":"The link title (google)",
+                "fieldData":["www.google.ch"],
+                "title":"The link title (google)",
                 "fieldCustomisation":null
             }]
         ],
@@ -51,12 +51,12 @@
         "fieldType":"section",
         "fieldData":[[{
                 "fieldType":"title",
-                "fieldData":"sub-section title",
+                "fieldData":["sub-section title"],
                 "fieldCustomisation":null
             }],
             [{
                 "fieldType":"text",
-                "fieldData":"sub-section 1 textfield 1 text",
+                "fieldData":["sub-section 1 textfield 1 text"],
                 "fieldCustomisation":{
                     "color":"#ff0000",
                     "font-size":"15pt",
@@ -66,12 +66,12 @@
                 "fieldType":"section",
                 "fieldData":[[{
                         "fieldType":"title",
-                        "fieldData":"sub-sub-section 1 title",
+                        "fieldData":["sub-sub-section 1 title"],
                         "fieldCustomisation":null
                     }],
                     [{
                         "fieldType":"text",
-                        "fieldData":"sub-sub-secsection 1 textfield 1 text",
+                        "fieldData":["sub-sub-secsection 1 textfield 1 text"],
                         "fieldCustomisation":{
                             "color":"#ff0000",
                             "font-size":"15pt",
@@ -86,4 +86,4 @@
         ],
         "fieldCustomisation":null
     }]]
-}}  
+}
