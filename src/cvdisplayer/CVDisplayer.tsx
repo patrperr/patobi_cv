@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import { jsonToObject } from '../toolbox/jsonManager'
+import { Section, CVObject } from '../types'
+import CV from '../cvRessources/cvs/sampleCVJSON.json'
 
 
 export class CVDisplayer extends Component {
 
 
   render() {
-    let test = jsonToObject("");
-    console.log();
+    let cvToDisplay = new CVObject();
+    cvToDisplay = Object.assign(cvToDisplay, CV);
+
+    console.log(cvToDisplay);
     
     return (
         <div>

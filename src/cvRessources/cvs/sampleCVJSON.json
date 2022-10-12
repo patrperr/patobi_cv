@@ -16,12 +16,12 @@
     [{
         "fieldType":"section",
         "fieldData":[
-            [{
+            {
                 "fieldType":"title",
                 "fieldData":["section 1 title"],
                 "fieldCustomisation":null
-            }],
-            [{
+            },
+            {
                 "fieldType":"text",
                 "fieldData":["section 1 textfield 1 text"],
                 "fieldCustomisation":{
@@ -29,32 +29,32 @@
                     "font-size":"15pt",
                     "font-weight":"800"
                 }
-            }],[{
-                "fieldType":"image",
-                "fieldData":["url"],
-                "title":"The image title",
-                "fieldCustomisation":null
-            }],[{
-                "fieldType":"list",
-                "fieldData":["element1","element2","element3","element4","element5"],
-                "title":"the list title",
-                "fieldCustomisation":null
-            }],[{
-                "fieldType":"link",
-                "fieldData":["www.google.ch"],
-                "title":"The link title (google)",
-                "fieldCustomisation":null
-            }]
+            },{
+              "fieldType":"image",
+              "fieldData":["url"],
+              "title":"The image title",
+              "fieldCustomisation":null
+            },{
+              "fieldType":"list",
+              "fieldData":["element1","element2","element3","element4","element5"],
+              "title":"the list title",
+              "fieldCustomisation":null
+            },{
+               "fieldType":"link",
+               "fieldData":["www.google.ch"],
+               "title":"The link title (google)",
+               "fieldCustomisation":null
+            }
         ],
         "fieldCustomisation":null
     }],[{
         "fieldType":"section",
-        "fieldData":[[{
+        "fieldData":[{
                 "fieldType":"title",
                 "fieldData":["sub-section title"],
                 "fieldCustomisation":null
-            }],
-            [{
+            },
+            {
                 "fieldType":"text",
                 "fieldData":["sub-section 1 textfield 1 text"],
                 "fieldCustomisation":{
@@ -62,14 +62,14 @@
                     "font-size":"15pt",
                     "font-weight":"800"
                 }
-            }],[{
+            },{
                 "fieldType":"section",
-                "fieldData":[[{
+                "fieldData":[{
                         "fieldType":"title",
                         "fieldData":["sub-sub-section 1 title"],
                         "fieldCustomisation":null
-                    }],
-                    [{
+                    },
+                    {
                         "fieldType":"text",
                         "fieldData":["sub-sub-secsection 1 textfield 1 text"],
                         "fieldCustomisation":{
@@ -77,11 +77,11 @@
                             "font-size":"15pt",
                             "font-weight":"800"
                         }
-                    }]
+                    }
                 
                 ],
                 "fieldCustomisation":null
-            }]
+            }
         
         ],
         "fieldCustomisation":null
