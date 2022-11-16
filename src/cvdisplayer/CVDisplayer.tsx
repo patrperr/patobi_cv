@@ -6,34 +6,37 @@ import { type } from 'os';
 
 
 export class CVDisplayer extends Component {
-  
+
   render() {
     let cvToDisplay = new CVObject();
     cvToDisplay = Object.assign(cvToDisplay, CV);
 
-    console.log(cvToDisplay);
+    // console.log(cvToDisplay);//!
 
-    cvToDisplay.allSections?.forEach(section => {
-      CPSection(section)
-    });
+
 
 
 
     return (
-        <div>
-          {
+      <div>
+        {
           //! remove me!
-          }<hr/>
-          
+        }<hr />
 
 
-          <p>CVDisplayer</p>
-          
+
+        <p>CVDisplayer</p>
+
+        <>
           {
-          //! remove me!
-          }<hr/>
-          
-        </div>
+            cvToDisplay.allSections?.forEach(section => {
+              CPSection(section);
+            })
+          }
+        </>
+        <hr />
+
+      </div>
     )
   }
 }

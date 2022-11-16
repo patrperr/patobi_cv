@@ -19,7 +19,7 @@ export interface ICVObject{
 
 export interface ISection{
     fieldType : string;
-    fieldData : string[];
+    fieldData : string[]|Section[];
     fieldCustomisation?: string[];
     title?: string;
 }
