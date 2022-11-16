@@ -11,11 +11,8 @@ function App() {
     <div className="App">
       <CVmenu/>
       <CVDisplayer/>
-<<<<<<< HEAD
       <CreateItems/>
-=======
       
->>>>>>> pat
     </div>
   ); 
 }
