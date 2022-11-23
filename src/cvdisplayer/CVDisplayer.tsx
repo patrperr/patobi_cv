@@ -29,8 +29,8 @@ export class CVDisplayer extends Component {
 
         <>
           {
-            cvToDisplay.allSections?.forEach(section => {
-              CPSection(section);
+            cvToDisplay.allSections?.map(section => {
+              return <CPSection sectionToDiplay={section} />
             })
           }
         </>
