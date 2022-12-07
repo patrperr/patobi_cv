@@ -15,6 +15,7 @@
   "allSections": [
     {
         "fieldType":"section",
+        "title":"section 1 Title",
         "fieldData":[
             {
                 "fieldType":"title",
@@ -49,6 +50,7 @@
         "fieldCustomisation":null
     },{
         "fieldType":"section",
+        "title":"section 2 Title",
         "fieldData":[{
                 "fieldType":"title",
                 "fieldData":["sub-section title"],

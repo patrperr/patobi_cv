@@ -30,7 +30,7 @@ export class CVDisplayer extends Component {
         <>
           {
             cvToDisplay.allSections?.map(section => {
-              return <CPSection sectionToDiplay={section} />
+              return <CPSection sectionToDiplay={section} isChild={false}/>
             })
           }
         </>
