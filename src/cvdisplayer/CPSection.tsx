@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
 import { Section } from '../types'
+// import testImage from '../cvRessources/images/Robin.jpg'
 
 export default function CPSection(props: { sectionToDiplay: Section, isChild: boolean, key?: string, similarElements?: number, position?: number }): JSX.Element {
-    console.log("FieldType : " + props.sectionToDiplay.fieldType);
 
+    let baseKey = props.key + "-" + props.sectionToDiplay.fieldType + props.position;
+    let keyNumber: number = 0;
     let key: string;
     let ChildPosition: number = -1;
 
     if (props.isChild) {
         if (props.position && props.position && props.key && props.key) {
-            key = props.key + "-" + props.sectionToDiplay.fieldType + props.position;
+            key = baseKey;
         }
     } else {
         key = "CV-" + props.sectionToDiplay.fieldType;
@@ -32,6 +33,8 @@ export default function CPSection(props: { sectionToDiplay: Section, isChild: bo
                                     let subsection: Section;
                                     let temp = subsectiondata as unknown;
                                     subsection = temp as Section;
+                                    keyNumber++;
+                                    key = baseKey + keyNumber;
 
                                     // console.log(subsectiondata);
                                     return <div key={key}>
@@ -44,96 +47,94 @@ export default function CPSection(props: { sectionToDiplay: Section, isChild: bo
                     </div>
                 </div>
             );
-
-
-            break;
         case 'title':
             return (
                 <>
                     {
                         props.sectionToDiplay.fieldData.map(fieldData => {
-                            console.log("GLUTEN TAG-TITLE : " + fieldData);
+                            keyNumber++;
+                            key = baseKey + keyNumber;
                             return (
                                 <div className='section-title-div' key={key}>
                                     <h3 className='section-title'>{fieldData}</h3>
-                                    <p>TODO title</p>
                                 </div>
                             )
                         })
                     }
                 </>
             )
-            break;
         case 'text':
             return (
                 <>
                     {
                         props.sectionToDiplay.fieldData.map(fieldData => {
-                            console.log("GLUTEN TAG-TEXT : " + fieldData);
+                            keyNumber++;
+                            key = baseKey + keyNumber;
                             return (
                                 <div className='section-title-div' key={key}>
                                     <p className='section-text'>{fieldData}</p>
-                                    <p>TODO text</p>
                                 </div>
                             )
                         })
                     }
                 </>
             )
-            break;
         case 'image':
             return (
                 <>
                     {
                         props.sectionToDiplay.fieldData.map(fieldData => {
-                            console.log("GLUTEN TAG-IMAGE : " + fieldData);
+                            keyNumber++;
+                            key = baseKey + keyNumber;
+                            let imgSrc = '../images/'+fieldData;
+                            console.log("imgSrc : " + imgSrc)
                             return (
                                 <div key={key}>
-                                    <p>TODO Image</p>
+                                    <img src={imgSrc} alt={imgSrc}></img>
+                                    {/* <img src={testImage}></img> */}
+                                    <span>TODO Image</span>
                                 </div>
                             )
                         })
                     }
                 </>
             )
-            break;
         case 'list':
             return (
                 <>
                     {
                         props.sectionToDiplay.fieldData.map(fieldData => {
-                            console.log("GLUTEN TAG-LIST : " + fieldData);
+                            keyNumber++;
+                            key = baseKey + keyNumber;
                             return (
                                 <div key={key}>
-                                    <p>TODO List</p>
+                                    <p>{fieldData}</p>
                                 </div>
                             )
                         })
                     }
                 </>
             )
-            break;
         case 'link':
             return (
                 <>
                     {
                         props.sectionToDiplay.fieldData.map(fieldData => {
-                            console.log("GLUTEN TAG-LINK : " + fieldData);
+                            keyNumber++;
+                            key = baseKey + keyNumber;
+                            let link = "https://" + {fieldData};
                             return (
                                 <div className='section-title-div' key={key}>
-                                    <p>TODO Link</p>
+                                    <p><a rel="noreferrer" target={"_blank"} href={link}>{fieldData}</a></p>
                                 </div>
                             )
                         })
                     }
                 </>
             )
-            break;
-
         default:
             return <div>Cépété dans le switch</div>
-            break;
     }
-    return <div>Cépété, mais pas dans le switch</div>
+    //return <div>Cépété, mais pas dans le switch</div>
 
 }

@@ -32,7 +32,7 @@
                 }
             },{
               "fieldType":"image",
-              "fieldData":["url"],
+              "fieldData":["Robin.jpg"],
               "title":"The image title",
               "fieldCustomisation":null
             },{

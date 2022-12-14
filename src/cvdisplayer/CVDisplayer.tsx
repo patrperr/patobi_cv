@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
-import { Section, CVObject } from '../types'
+import  { Component } from 'react'
+import { CVObject } from '../types'
 import CV from '../cvRessources/cvs/sampleCVJSON.json'
 import CPSection from './CPSection';
-import { type } from 'os';
 
 
 export class CVDisplayer extends Component {
-
+  
   render() {
+
+    let baseKey:string = "CvMainSection";
+    let keynumber:number = 0;
+
     let cvToDisplay = new CVObject();
     cvToDisplay = Object.assign(cvToDisplay, CV);
 
@@ -27,13 +30,15 @@ export class CVDisplayer extends Component {
 
         <p>CVDisplayer</p>
 
-        <>
+        <div>
           {
             cvToDisplay.allSections?.map(section => {
-              return <CPSection sectionToDiplay={section} isChild={false}/>
+              keynumber++;
+              let key = baseKey+keynumber;
+              return(<div key={key}> <CPSection sectionToDiplay={section} isChild={false}/></div>)
             })
           }
-        </>
+        </div>
         <hr />
 
       </div>
