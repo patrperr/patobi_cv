@@ -14,8 +14,7 @@ export class CVDisplayer extends Component {
     let cvToDisplay = new CVObject();
     cvToDisplay = Object.assign(cvToDisplay, CV);
 
-    // console.log(cvToDisplay);//!
-
+    // console.log(cvToDisplay);//!test
 
 
 
