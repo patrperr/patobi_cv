@@ -46,5 +46,6 @@ export class Section implements ISection {
     fieldData= ["string"];
     fieldCustomisation?: string[] | undefined;
     title?: string | undefined;
+    expandable? : boolean;
 
 }

@@ -87,7 +87,7 @@ export default function CPSection(props: { sectionToDiplay: Section, isChild: bo
                             keyNumber++;
                             key = baseKey + keyNumber;
                             let imgSrc = '../images/'+fieldData;
-                            console.log("imgSrc : " + imgSrc)
+                            // console.log("imgSrc : " + imgSrc)
                             return (
                                 <div key={key}>
                                     <img src={imgSrc} alt={imgSrc}></img>
@@ -122,7 +122,8 @@ export default function CPSection(props: { sectionToDiplay: Section, isChild: bo
                         props.sectionToDiplay.fieldData.map(fieldData => {
                             keyNumber++;
                             key = baseKey + keyNumber;
-                            let link = "https://" + {fieldData};
+                            let link : string = "https://" + fieldData;
+
                             return (
                                 <div className='section-title-div' key={key}>
                                     <p><a rel="noreferrer" target={"_blank"} href={link}>{fieldData}</a></p>

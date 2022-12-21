@@ -20,13 +20,12 @@ export class CVDisplayer extends Component {
 
 
 
+  // this.render() {
+  //   let test = jsonToObject("");
+  //   console.log(test);
+    
     return (
       <div>
-        {
-          //! remove me!
-        }<hr />
-
-
 
         <p>CVDisplayer</p>
 
@@ -39,7 +38,6 @@ export class CVDisplayer extends Component {
             })
           }
         </div>
-        <hr />
 
       </div>
     )
