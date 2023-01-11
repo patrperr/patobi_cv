@@ -1,7 +1,13 @@
 import { Section } from '../types'
 // import testImage from '../cvRessources/images/Robin.jpg'
 
-export default function CPSection(props: { sectionToDiplay: Section, isChild: boolean, key?: string, similarElements?: number, position?: number }): JSX.Element {
+export default function CPSection(props: {
+    sectionToDiplay: Section,
+    isChild: boolean,
+    key?: string,
+    similarElements?: number,
+    position?: number
+}): JSX.Element {
 
     let baseKey = props.key + "-" + props.sectionToDiplay.fieldType + props.position;
     let keyNumber: number = 0;
@@ -86,7 +92,7 @@ export default function CPSection(props: { sectionToDiplay: Section, isChild: bo
                         props.sectionToDiplay.fieldData.map(fieldData => {
                             keyNumber++;
                             key = baseKey + keyNumber;
-                            let imgSrc = '../images/'+fieldData;
+                            let imgSrc = '../images/' + fieldData;
                             // console.log("imgSrc : " + imgSrc)
                             return (
                                 <div key={key}>
@@ -122,7 +128,7 @@ export default function CPSection(props: { sectionToDiplay: Section, isChild: bo
                         props.sectionToDiplay.fieldData.map(fieldData => {
                             keyNumber++;
                             key = baseKey + keyNumber;
-                            let link : string = "https://" + fieldData;
+                            let link: string = "https://" + fieldData;
 
                             return (
                                 <div className='section-title-div' key={key}>

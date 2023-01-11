@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CVDisplayer from './cvdisplayer/CVDisplayer';
 import CreateItems from './cvForm/CreateItems';
-import { PropaneSharp, SettingsInputAntennaTwoTone } from '@mui/icons-material';
 
 type state = {
   isEdit: boolean;
