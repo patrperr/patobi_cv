@@ -2,20 +2,24 @@ import { ChangeEvent, Component } from 'react'
 import { CVObject } from '../types'
 import CV from '../cvRessources/cvs/sampleCVJSON.json'
 import CPSection from './CPSection';
-import { Button, Input } from '@mui/material';
+import { Alert, Button, Input, Snackbar } from '@mui/material';
 import { FileUploadOutlined } from '@mui/icons-material';
 
 
 export class CVDisplayer extends Component<{}, {
   cvToDisplay: CVObject,
-  fileReference?: File
+  fileReference?: File,
+  showSuccessSnack?: boolean,
+  showErrorSnack?: boolean
 
-}> {
+}>{
 
   constructor(props: {} | Readonly<{}>) {
     super(props);
     this.state = {
-      cvToDisplay: new CVObject()
+      cvToDisplay: new CVObject(),
+      showSuccessSnack: false,
+      showErrorSnack: false
     };
   }
 
@@ -44,16 +48,22 @@ export class CVDisplayer extends Component<{}, {
         if (result !== undefined) {
           newCV = JSON.parse(result);
         }
-        this.setState({ cvToDisplay: newCV });
+        this.setState({ cvToDisplay: newCV , showSuccessSnack:true});
       };
 
       // console.log(this.state.cvToDisplay);//!
-
+     
     } else {
-      alert("Error while uploading CV (alfa alert)")
+      this.setState({showErrorSnack:true})
     }
   }
 
+  ShowSuccessSnack(){this.setState({showSuccessSnack : true})}
+  HideSuccessSnack(){this.setState({showSuccessSnack : false})}
+  ShowErrorSnack(){this.setState({showErrorSnack : true})}
+  HideErrorSnack(){this.setState({showErrorSnack : false})}
+
+  
 
   SelectFileToUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -77,16 +87,28 @@ export class CVDisplayer extends Component<{}, {
           <Input type="file" onChange={this.SelectFileToUpload} /> <br />
           <Button variant='contained' startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} disabled={!uplaodisActive}>Upload CV</Button>
         </div>
-        {
-          this.state.cvToDisplay.allSections?.map(section => {
-            keynumber++;
-            let key = baseKey + keynumber;
-            // console.log(this.state.cvToDisplay);//!
-            return (<div key={key}>
-              <CPSection sectionToDiplay={section} isChild={false} />
-            </div>)
-          })
-        }
+        <div className='all-sections'>
+          {
+            this.state.cvToDisplay.allSections?.map(section => {
+              keynumber++;
+              let key = baseKey + keynumber;
+              // console.log(this.state.cvToDisplay);//!
+              return (<div key={key} className="section-grand-parent-div">
+                <CPSection sectionToDiplay={section} level={1} isChild={false} />
+              </div>)
+            })
+          }
+        </div>
+        <Snackbar open={this.state.showSuccessSnack} autoHideDuration={3000}  onClose={this.HideSuccessSnack.bind(this)}>
+          <Alert  severity="success" sx={{ width: '100%' }}>
+            Cv Uploaded with sucess !
+          </Alert>
+        </Snackbar>
+        <Snackbar open={this.state.showErrorSnack} autoHideDuration={3000} onClose={this.HideErrorSnack.bind(this)}>
+          <Alert  severity="error" sx={{ width: '100%' }}>
+            Sorry, there was an error loading the CV...
+          </Alert>
+        </Snackbar>
       </div>
     )
   }

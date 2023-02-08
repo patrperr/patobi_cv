@@ -1,4 +1,5 @@
 import { Section } from '../types'
+import './CVDisplayerAndSection.css'
 // import testImage from '../cvRessources/images/Robin.jpg'
 
 export default function CPSection(props: {
@@ -6,9 +7,11 @@ export default function CPSection(props: {
     isChild: boolean,
     key?: string,
     similarElements?: number,
-    position?: number
+    position?: number,
+    level:number
 }): JSX.Element {
 
+    let childLevel : number = props.level;
     let baseKey = props.key + "-" + props.sectionToDiplay.fieldType + props.position;
     let keyNumber: number = 0;
     let key: string;
@@ -26,10 +29,17 @@ export default function CPSection(props: {
     switch (props.sectionToDiplay.fieldType) {
         case 'section':
             ChildPosition = -1;
+            childLevel++;
+
+            let sectionclassName = "";
+            if(childLevel > 2){
+                sectionclassName = "subsection-div";
+            }else{  sectionclassName = "section-div"}
+
             return (
-                <div>
+                <div className={sectionclassName} >
                     <div className='section-title-div'>
-                        <h3 className='section-title'>{props.sectionToDiplay.title}</h3>
+                        <h3 className='section-main-title'>{props.sectionToDiplay.title}</h3>
                     </div>
                     <div className='section-content-container'>
                         <>
@@ -43,8 +53,8 @@ export default function CPSection(props: {
                                     key = baseKey + keyNumber;
 
                                     // console.log(subsectiondata);
-                                    return <div key={key}>
-                                        <CPSection sectionToDiplay={subsection} isChild={true} similarElements={props.sectionToDiplay.fieldData.length} position={ChildPosition} />
+                                    return <div key={key} className="section-parent-div">
+                                        <CPSection sectionToDiplay={subsection} level={childLevel} isChild={true} similarElements={props.sectionToDiplay.fieldData.length} position={ChildPosition} />
                                     </div>
                                 })
 
@@ -77,7 +87,7 @@ export default function CPSection(props: {
                             keyNumber++;
                             key = baseKey + keyNumber;
                             return (
-                                <div className='section-title-div' key={key}>
+                                <div className='section-text-div' key={key}>
                                     <p className='section-text'>{fieldData}</p>
                                 </div>
                             )
@@ -108,17 +118,19 @@ export default function CPSection(props: {
         case 'list':
             return (
                 <>
-                    {
-                        props.sectionToDiplay.fieldData.map(fieldData => {
-                            keyNumber++;
-                            key = baseKey + keyNumber;
-                            return (
-                                <div key={key}>
-                                    <p>{fieldData}</p>
-                                </div>
-                            )
-                        })
-                    }
+                    <div className='section-list-div'>
+                        {
+                            props.sectionToDiplay.fieldData.map(fieldData => {
+                                keyNumber++;
+                                key = baseKey + keyNumber;
+                                return (
+                                    <div className='section-list-element-div' key={key}>
+                                        <p className='section-list-element'>{fieldData}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </>
             )
         case 'link':
@@ -131,8 +143,8 @@ export default function CPSection(props: {
                             let link: string = "https://" + fieldData;
 
                             return (
-                                <div className='section-title-div' key={key}>
-                                    <p><a rel="noreferrer" target={"_blank"} href={link}>{fieldData}</a></p>
+                                <div className='section-link-div' key={key}>
+                                    <p className='.section-link'><a rel="noreferrer" target={"_blank"} href={link}>{fieldData}</a></p>
                                 </div>
                             )
                         })
