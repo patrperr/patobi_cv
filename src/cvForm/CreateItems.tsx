@@ -6,7 +6,6 @@ import AddIcon from '@mui/icons-material/Add';
 import './../cvRessources/cvs/sampleCVJSON.json';
 import { nodeModuleNameResolver } from 'typescript';
 import ListeSelectorType from './ListeSelectorType'
-import CVSection from './CVSection';
 
 
 export default function CreateItems() {
@@ -14,8 +13,17 @@ export default function CreateItems() {
   
   function addComponent() { 
     let newItems = [...items];
-    newItems.push(<ListeSelectorType onChange={onEachClick} delete={onEachClick} id={newItems.length} />);
+    newItems.push(<ListeSelectorType onChange={onEachClick} delete={deleteComponent} key={newItems.length} type={'test'} />);
     setItems(newItems)
+    
+  }
+  function deleteComponent(id = 0) { 
+    let newItems = [...items];
+    console.log(id)
+    setItems(current => current.filter(items => {
+      
+      return items.key !== id;
+    }))
     
   }
   let onEachClick = (id:any) =>{
