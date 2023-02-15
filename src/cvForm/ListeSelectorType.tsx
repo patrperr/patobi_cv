@@ -1,4 +1,9 @@
 import React, { Component, useState } from 'react'
+import FieldLink from './cvFieldType/FieldLink';
+import FieldList from './cvFieldType/FieldList';
+import FieldSection from './cvFieldType/FieldSection';
+import FieldText from './cvFieldType/FieldText';
+import FieldTitle from './cvFieldType/FieldTitle';
 
 export default function  ListeSelectorType(props:{onChange:(id:any)  => void, delete:(id:any)  => void,key:number,type:string}) {
   const[id,setId] = useState(props.key)
@@ -8,37 +13,27 @@ export default function  ListeSelectorType(props:{onChange:(id:any)  => void, de
   switch(stateType) {
     case "title":
        result = <div>
-                  <div onClick={()=>{
-                    setStateType("");
-                  }}>title</div>
+                  <FieldTitle/>
                 </div>   
     break;
     case "text":
        result = <div>
-                  <div onClick={()=>{
-                    setStateType("");
-                  }}>text</div>
+                  <FieldText />
                 </div>   
     break;
     case "section":
        result = <div>
-                  <div onClick={()=>{
-                    setStateType("");
-                  }}>section</div>
+                  <FieldSection/>
                 </div>   
     break;
     case "link":
       result = <div>
-                 <div onClick={()=>{
-                   setStateType("");
-                 }}>link</div>
+                 <FieldLink/>
                </div>   
     break;
     case "list":
        result = <div>
-                  <div onClick={()=>{
-                    setStateType("");
-                  }}>list</div>
+                  <FieldList/>
                 </div>   
     break;
     default:
