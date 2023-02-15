@@ -30,7 +30,7 @@ class App extends React.Component<props>{
           <div className='menu'>
             <h1 className='main-title'>Patobi CV Creator</h1>
             <div className='menu-darkmode-switch'>
-              <Switch color='primary' defaultChecked /><span>dark theme</span>
+              <Switch color='primary'/><span>dark theme</span>
             </div>
             <div className='menu-buttons'>
               <ButtonGroup aria-label="large button group">
@@ -51,7 +51,7 @@ class App extends React.Component<props>{
           <div className='menu'>
             <h1 className='main-title'>Patobi CV Creator</h1>
             <div className='menu-darkmode-switch'>
-              <Switch color='primary' defaultChecked /><span>dark theme</span>
+              <Switch color='primary'  /><span>dark theme</span>
             </div>
             <div className='menu-buttons'>
               <ButtonGroup aria-label="large button group">
