@@ -81,7 +81,6 @@ export class CVDisplayer extends Component<{}, {
 
     return (
       <div className='CVDisplayer'>
-        <hr /> {/* DELETE MEEEEEEEEE */}
         <div className='file-input'>
           <div className='file-input-buttons'>
             <Button variant="contained" startIcon={<FolderOpen />} component="label" color="primary">
