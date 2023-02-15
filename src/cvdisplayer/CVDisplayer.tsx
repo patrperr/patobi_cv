@@ -2,15 +2,17 @@ import { ChangeEvent, Component } from 'react'
 import { CVObject } from '../types'
 import CV from '../cvRessources/cvs/sampleCVJSON.json'
 import CPSection from './CPSection';
-import { Alert, Button, Input, Snackbar } from '@mui/material';
-import { FileUploadOutlined } from '@mui/icons-material';
+import { Alert, Button, Snackbar } from '@mui/material';
+import { FileUploadOutlined, FolderOpen } from '@mui/icons-material';
+import '../App.css'
 
 
 export class CVDisplayer extends Component<{}, {
   cvToDisplay: CVObject,
   fileReference?: File,
   showSuccessSnack?: boolean,
-  showErrorSnack?: boolean
+  showErrorSnack?: boolean,
+  uploadIsActive: boolean
 
 }>{
 
@@ -19,7 +21,8 @@ export class CVDisplayer extends Component<{}, {
     this.state = {
       cvToDisplay: new CVObject(),
       showSuccessSnack: false,
-      showErrorSnack: false
+      showErrorSnack: false,
+      uploadIsActive:false
     };
   }
 
@@ -48,26 +51,26 @@ export class CVDisplayer extends Component<{}, {
         if (result !== undefined) {
           newCV = JSON.parse(result);
         }
-        this.setState({ cvToDisplay: newCV , showSuccessSnack:true});
+        this.setState({ cvToDisplay: newCV, showSuccessSnack: true, uploadIsActive:false });
       };
 
       // console.log(this.state.cvToDisplay);//!
-     
+
     } else {
-      this.setState({showErrorSnack:true})
+      this.setState({ showErrorSnack: true })
     }
   }
 
-  ShowSuccessSnack(){this.setState({showSuccessSnack : true})}
-  HideSuccessSnack(){this.setState({showSuccessSnack : false})}
-  ShowErrorSnack(){this.setState({showErrorSnack : true})}
-  HideErrorSnack(){this.setState({showErrorSnack : false})}
+  ShowSuccessSnack() { this.setState({ showSuccessSnack: true }) }
+  HideSuccessSnack() { this.setState({ showSuccessSnack: false }) }
+  ShowErrorSnack() { this.setState({ showErrorSnack: true }) }
+  HideErrorSnack() { this.setState({ showErrorSnack: false }) }
 
-  
+
 
   SelectFileToUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      this.setState({ fileReference: e.target.files[0] });
+      this.setState({ fileReference: e.target.files[0], uploadIsActive : true });
     }
   }
 
@@ -75,17 +78,22 @@ export class CVDisplayer extends Component<{}, {
 
     let baseKey: string = "CvMainSection";
     let keynumber: number = 0;
-    let uplaodisActive: boolean = false;
-
-    if (this.state.fileReference !== undefined) {
-      uplaodisActive = true;
-    }
 
     return (
-      <div>
-        <div>
-          <Input type="file" onChange={this.SelectFileToUpload} /> <br />
-          <Button variant='contained' startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} disabled={!uplaodisActive}>Upload CV</Button>
+      <div className='CVDisplayer'>
+        <hr /> {/* DELETE MEEEEEEEEE */}
+        <div className='file-input'>
+          <div className='file-input-buttons'>
+            <Button variant="contained" startIcon={<FolderOpen />} component="label" color="primary">
+              {" "}
+              Select a CV
+              <input type="file" hidden onChange={this.SelectFileToUpload} />
+            </Button>
+            <Button variant='contained' style={{marginLeft:"20px"}} startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} disabled={!this.state.uploadIsActive}>Upload CV</Button>
+          </div>
+          <p className='file-input-span'>{this.state.fileReference?.name}</p>
+          <br />
+
         </div>
         <div className='all-sections'>
           {
@@ -99,13 +107,13 @@ export class CVDisplayer extends Component<{}, {
             })
           }
         </div>
-        <Snackbar open={this.state.showSuccessSnack} autoHideDuration={3000}  onClose={this.HideSuccessSnack.bind(this)}>
-          <Alert  severity="success" sx={{ width: '100%' }}>
+        <Snackbar open={this.state.showSuccessSnack} autoHideDuration={3000} anchorOrigin={{ vertical: 'top', horizontal: 'left' }} onClose={this.HideSuccessSnack.bind(this)}>
+          <Alert severity="success" sx={{ width: '100%' }}>
             Cv Uploaded with sucess !
           </Alert>
         </Snackbar>
-        <Snackbar open={this.state.showErrorSnack} autoHideDuration={3000} onClose={this.HideErrorSnack.bind(this)}>
-          <Alert  severity="error" sx={{ width: '100%' }}>
+        <Snackbar open={this.state.showErrorSnack} autoHideDuration={3000} anchorOrigin={{ vertical: 'top', horizontal: 'left' }} onClose={this.HideErrorSnack.bind(this)}>
+          <Alert severity="error" sx={{ width: '100%' }}>
             Sorry, there was an error loading the CV...
           </Alert>
         </Snackbar>

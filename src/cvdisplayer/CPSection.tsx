@@ -1,5 +1,5 @@
 import { Section } from '../types'
-import './CVDisplayerAndSection.css'
+import '../App.css'
 // import testImage from '../cvRessources/images/Robin.jpg'
 
 export default function CPSection(props: {
