@@ -14,7 +14,7 @@ export default function FieldTitle() {
         {
             return null
         }
-        result = <h1 style={{width: "auto",margin:"0px auto"}} onClick={()=>{setStatePrewiew(false)}}>
+        result = <h1 style={{width: "fit-content",margin:"0px auto"}} onClick={()=>{setStatePrewiew(false)}}>
             {stateText}
         </h1>
     }
