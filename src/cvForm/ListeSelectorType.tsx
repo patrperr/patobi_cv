@@ -1,13 +1,13 @@
-import React, { Component, useState } from 'react'
+import { useState } from 'react'
 import FieldLink from './cvFieldType/FieldLink';
 import FieldList from './cvFieldType/FieldList';
 import FieldSection from './cvFieldType/FieldSection';
 import FieldText from './cvFieldType/FieldText';
 import FieldTitle from './cvFieldType/FieldTitle';
 
-export default function  ListeSelectorType(props:{onChange:(id:any)  => void, delete:(id:any)  => void,key:number,type:string}) {
-  const[id,setId] = useState(props.key)
-  const [stateType, setStateType] = useState(props.type);
+export default function  ListeSelectorType(props:{onChanges:(key:number)  => void, delete:(id:any)  => void,id:number,type:string}) {
+  const[id] = useState(props.id)
+  const [stateType] = useState(props.type);
 
   let result
   switch(stateType) {
@@ -38,7 +38,7 @@ export default function  ListeSelectorType(props:{onChange:(id:any)  => void, de
     break;
     default:
       result= <div> 
-      <select onChange={e=>setStateType(e.target.value)} name="pets" id="pet-select">
+      <select onChange={()=>{props.onChanges(props.id);}} name="" id="">
         <option value="">--Please choose an option--</option>
         <option value="title">Title</option>
         <option value="text">Textarea</option>
@@ -46,7 +46,7 @@ export default function  ListeSelectorType(props:{onChange:(id:any)  => void, de
         <option value="section">Section</option>
         <option value="link">Link</option>
       </select>
-      <button onClick={() => props.delete(props.key)}>X</button>
+      <button onClick={() => props.delete(id)}>X</button>
     </div>
     break;
   }

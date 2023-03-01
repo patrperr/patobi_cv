@@ -1,42 +1,47 @@
-import React, { Component, useEffect, useState } from 'react'
+import { useState } from 'react'
 import "./styles/createItems.css"
 import Button from '@mui/material/Button';
-import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
 import AddIcon from '@mui/icons-material/Add';
 import './../cvRessources/cvs/sampleCVJSON.json';
-import { nodeModuleNameResolver } from 'typescript';
 import ListeSelectorType from './ListeSelectorType'
 
 
 export default function CreateItems() {
-   const [items,setItems] = useState<JSX.Element[]>([])
+   const [items,setItems] = useState<any[]>([])
   
   function addComponent() { 
-    let newItems = [...items];
-    newItems.push(<ListeSelectorType onChange={onEachClick} delete={deleteComponent} key={newItems.length} type={'test'} />);
-    setItems(newItems)
-    
+    let newItems : any[] = [...items];
+    let obj = {id:newItems.length}
+      newItems.push(obj);
+      setItems(newItems)
   }
+
   function deleteComponent(id = 0) { 
-    let newItems = [...items];
-    console.log(id)
-    setItems(current => current.filter(items => {
-      
-      return items.key !== id;
-    }))
-    
+    let newItems : any[] = [...items];
+    let index = newItems.findIndex(o => o.id === id)
+
+    if(index >= 0){
+      newItems.splice(index,1);
+      console.log(`deleted ${index}`)
+      console.log(newItems)
+      setItems(newItems)
+    }
   }
-  let onEachClick = (id:any) =>{
-    console.log(id)
+  let onEachChange = (key:number = 0) =>{
+    console.log(items.length)
+   // console.log(items[items.length-1])
+    // console.log(items[key]);
   }
 
    return (
     <div className='create-items'>
       <div>
         {
-          items.map((data:JSX.Element) => {
-            return <div>{data}</div>
+          items.length ? 
+          items.map((data:any) => {
+            return <ListeSelectorType key={data.id} id={data.id} onChanges={() => onEachChange(data.id)} delete={() => deleteComponent(data.id)} type=''/>
           })
+          : null
         }
       </div>
       <Button  className='create-items-add-button' variant="outlined" onClick={
