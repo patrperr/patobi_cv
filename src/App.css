@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+.light .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,7 +24,23 @@
   color: white;
 }
 
-.App-link {
+.dark .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.light .App-link {
+  color: #61dafb;
+}
+
+.dark .App-link {
   color: #61dafb;
 }
 
@@ -40,14 +56,24 @@
 
 /*############################### General ######################################*/
 /*---------------  General -----------------*/
+.light body {
+  background-color: rgb(206, 206, 206);
+}
 
+body.dark {
+  background-color: rgb(32, 37, 48);
+}
 
 /*---------------  Menu -----------------*/
-.menu {
+.light .menu {
   margin-bottom: 20px;
 }
 
-.menu-top {
+.dark .menu {
+  margin-bottom: 20px;
+}
+
+.light .menu-top {
   padding-top: 30px;
   padding-bottom: 20px;
   padding-left: 30px;
@@ -55,7 +81,15 @@
   display: flex;
 }
 
-.main-title {
+.dark .menu-top {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+}
+
+.light .main-title {
   padding-top: 20px;
   padding-bottom: 10px;
   font-size: 30px;
@@ -63,130 +97,237 @@
   margin: auto;
 }
 
-.menu-darkmode-switch {
-text-align: right;
-padding-right: 5%;
-margin-top: -40px;
+.dark .main-title {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 30px;
+  justify-content: center;
+  margin: auto;
+  color: rgb(243, 243, 243);
 }
 
-.menu-buttons {
+.light .menu-darkmode-switch {
+  text-align: right;
+  padding-right: 5%;
+  margin-top: -40px;
+}
+
+.dark .menu-darkmode-switch {
+  text-align: right;
+  padding-right: 5%;
+  margin-top: -40px;
+}
+
+.light .menu-buttons {
   margin: auto;
 }
+.dark .menu-buttons {
+  margin: auto;
+}
+/*---------------  buttons -----------------*/
 
+ .light button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
+  background-color: #f3f3f3;
+  color: #242a4b;
+  border: #242a4b;
+}
+.dark button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
+ 
+  background-color: #f3f3f3;
+  color: #242a4b;
+  border: #242a4b;
+}
+
+.light button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.css-sghohy-MuiButtonBase-root-MuiButton-root{
+  background-color: #242a4b;
+  color: #f3f3f3;
+  border: #242a4b;
+}
+.dark button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.css-sghohy-MuiButtonBase-root-MuiButton-root{
+  background-color: #243383;
+  color: #f3f3f3;
+  border: #243383;
+}
+
+.light div.content > div > div.file-input > div > label{
+  color: #f3f3f3;
+  background-color: #242a4b;
+}
+.dark div.content > div > div.file-input > div > label{
+  color: #243383;
+  background-color: #f3f3f3;
+}
+
+.light div.content > div > div.file-input > div > label > span.MuiButton-startIcon.MuiButton-iconSizeMedium.css-1d6wzja-MuiButton-startIcon > svg{
+  color: #f3f3f3;
+}
+.dark div.content > div > div.file-input > div > label > span.MuiButton-startIcon.MuiButton-iconSizeMedium.css-1d6wzja-MuiButton-startIcon > svg{
+  color: #243383;
+}
+
+.light div > div.file-input > div > button{
+  background-color: #242a4b;
+}
+.dark div > div.file-input > div > button{
+  color: #243383;
+  background-color: #f3f3f3;
+}
+
+.dark div.content > div > div.file-input > div > button > span.MuiButton-startIcon.MuiButton-iconSizeMedium.css-1d6wzja-MuiButton-startIcon > svg{
+  color: #243383;
+}
 
 
 
 /*---------------  content -----------------*/
-.content {
+.light .content {
+  margin-top: 20px;
+}
+.dark .content {
   margin-top: 20px;
 }
 
+.dark span {
+  color: rgb(233, 233, 233);
+}
 
 /*############################### CV Displayer ######################################*/
 
 
-.CVDisplayer {
+.light .CVDisplayer {
   margin: auto;
   width: 100%;
 }
+.dark .CVDisplayer {
+  margin: auto;
+  width: 100%;
+  color: rgb(212, 212, 212);
+}
 
 /* ----------------- header ----------------------- */
-.file-input {
+.light .file-input {
+  margin: auto;
+  width: 90%;
+  text-align: left;
+}
+.dark .file-input {
   margin: auto;
   width: 90%;
   text-align: left;
 }
 
-.file-input-span {
+.light .file-input-span {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.dark .file-input-span {
   margin-left: 20px;
   margin-top: 5px;
 }
 
-.file-input-buttons {
+.light .file-input-buttons {
+  display: flex;
+  margin-left: 20px;
+}
+.dark .file-input-buttons {
   display: flex;
   margin-left: 20px;
 }
 
 /* ----------------- section ----------------------- */
-.all-sections {
+.light .all-sections {
   margin: auto;
-  /* background-color: brown; */
-  /*! test colors */
   width: 65%;
   max-width: 1000px;
-
+}
+.dark .all-sections {
+  margin: auto;
+  width: 65%;
+  max-width: 1000px;
 }
 
-.section-div {}
+/* .light .section-div {} */
+/* .dark .section-div {} */
 
-.subsection-div {}
+/* .light .subsection-div {} */
+/* .dark .subsection-div {} */
 
-.section-content-container {
-  /* background-color: rgb(73, 60, 60); */
-  /*! test colors */
-}
+/* .light .section-content-container {} */
+/* .dark .section-content-container {} */
 
-.section-grand-parent-div {
+.light .section-grand-parent-div {
   height: 80%;
   width: 80%;
   max-width: 1000px;
   margin: auto;
   text-align: left;
-  /* background-color: aqua; */
-  /*! test colors */
+  display: flex;
+  align-items: center;
+}
+.dark .section-grand-parent-div {
+  height: 80%;
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  text-align: left;
   display: flex;
   align-items: center;
 }
 
-.section-parent-div {
-  /* background-color: yellow; */
-  /*! test colors */
-}
+/* .light .section-parent-div {} */
+/* .dark .section-parent-div {} */
 
-.section-title-div {
-  /* background-color: rgb(59, 235, 83); */
-  /*! test colors */
-}
+/* .light .section-title-div {} */
+/* .dark .section-title-div {} */
 
-.section-div .section-main-title {
-  /* background-color: rgb(241, 28, 28); */
-  /*! test colors */
+.light .section-div .section-main-title {
   margin-left: -30px;
   margin-top: 15px;
   margin-bottom: 10px;
   font-size: 20pt;
-
+}
+.dark .section-div .section-main-title {
+  margin-left: -30px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 20pt;
 }
 
-.subsection-div .section-main-title {
-  /* background-color: rgb(216, 103, 103); */
-  /*! test colors */
+
+.light .subsection-div .section-main-title {
   margin-left: -10px;
   margin-top: 15px;
   margin-bottom: 5px;
   font-size: 16pt;
-
+}.dark .subsection-div .section-main-title {
+  margin-left: -10px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 16pt;
 }
 
 
 /* ----------------- Title -------------------------- */
-.section-title-div {
-  /* background-color: rgb(59, 235, 83); */
-  /*! test colors */
+/* .light .section-title-div {} */
+.dark .section-title-div {
+  color: rgb(240, 240, 240);
 }
 
-.section-title {}
+/* .light .section-title {} */
+/* .dark .section-title {} */
 
 
 
 /* ----------------- Text -------------------------- */
 
-.section-text-div {
-  /* background-color: rgb(59, 235, 83); */
-  /*! test colors */
-}
+/* .light .section-text-div {} */
+/* .dark .section-text-div {} */
 
-.section-text {
+.light .section-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.dark .section-text {
   text-align: justify;
   text-justify: inter-word;
 }
@@ -196,41 +337,60 @@ margin-top: -40px;
 /* ----------------- link -------------------------- */
 
 
-.section-link-div {
-  /* background-color: rgb(59, 235, 83); */
-  /*! test colors */
+.light .section-link-div {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.dark .section-link-div {
   padding-top: 0px;
   padding-bottom: 0px;
 }
 
-.section-link {}
+/* .light .section-link {} */
+/* .dark .section-link {} */
 
-a:-webkit-any-link {
+.light a:-webkit-any-link {
   text-decoration: none !important;
   font-style: italic;
   color: rgb(42, 10, 121);
 }
+.dark a:-webkit-any-link {
+  text-decoration: none !important;
+  font-style: italic;
+  color: rgb(177, 186, 238);
+}
 
-a:-webkit-any-link:hover {
+.light a:-webkit-any-link:hover {
   text-decoration: none !important;
   font-style: italic;
   font-weight: 700;
   color: rgb(42, 10, 121);
 }
+.dark a:-webkit-any-link:hover {
+  text-decoration: none !important;
+  font-style: italic;
+  font-weight: 700;
+  color: rgb(178, 186, 228);
+}
 
 
 /* ----------------- list -------------------------- */
 
-.section-list-div {
-  /* background-color: rgb(59, 235, 83); */
-  /*! test colors */
-}
+/* .light .section-list-div {} */
+/* .dark .section-list-div {} */
 
-.section-list-element-div {
+.light .section-list-element-div {
+  margin-left: 20px;
+}
+.dark .section-list-element-div {
   margin-left: 20px;
 }
 
-.section-list-element {
+.light .section-list-element {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.dark .section-list-element {
   margin-top: 7px;
   margin-bottom: 7px;
 }
@@ -256,5 +416,5 @@ a:-webkit-any-link:hover {
     text-align: center;
     padding-bottom: 5px;
     margin: auto;
-    }
+  }
 }
