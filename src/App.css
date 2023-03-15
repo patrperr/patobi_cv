@@ -132,7 +132,6 @@ body.dark {
   border: #242a4b;
 }
 .dark button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
- 
   background-color: #f3f3f3;
   color: #242a4b;
   border: #242a4b;
@@ -148,6 +147,18 @@ body.dark {
   color: #f3f3f3;
   border: #243383;
 }
+
+.light #root > div > div.content > div > div.file-input > div > button:disabled {
+  background-color: #6c6f79;
+  color: #b1b1b1;
+  border: #6c6f79;
+}
+.dark #root > div > div.content > div > div.file-input > div > button:disabled {
+  background-color: #6a6c70;
+  color: #242a4b;
+  border: #6a6c70;
+}
+
 
 .light div.content > div > div.file-input > div > label{
   color: #f3f3f3;

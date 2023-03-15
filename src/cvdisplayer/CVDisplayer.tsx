@@ -88,7 +88,7 @@ export class CVDisplayer extends Component<{}, {
               Select a CV
               <input type="file" hidden onChange={this.SelectFileToUpload} />
             </Button>
-            <Button variant='contained' style={{marginLeft:"20px"}} startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} hidden={this.state.uploadIsActive}>Upload CV</Button>
+            <Button variant='contained' style={{marginLeft:"20px"}} startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} /*hidden={this.state.uploadIsActive}*/ disabled={!this.state.uploadIsActive}>Upload CV</Button>
           </div>
           <p className='file-input-span'>{this.state.fileReference?.name}</p>
           <br />

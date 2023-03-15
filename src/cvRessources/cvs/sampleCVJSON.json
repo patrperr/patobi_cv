@@ -38,6 +38,20 @@
               "expandable":true,
               "fieldCustomisation":null
             },{
+                "fieldType":"text",
+                "fieldData":["section 1 textfield 1 text"],
+                "fieldCustomisation":{
+                    "color":"#ff0000",
+                    "font-size":"15pt",
+                    "font-weight":"800"
+                }
+            },{
+                "fieldType":"list",
+                "fieldData":["element1","element2","element3","element4","element5"],
+                "title":"the list title",
+                "expandable":true,
+                "fieldCustomisation":null
+              },{
                 "fieldType":"link",
                 "fieldData":["www.google.ch"],
                 "title":"The link title (google)",
