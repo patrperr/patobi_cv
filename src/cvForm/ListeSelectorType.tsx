@@ -5,48 +5,53 @@ import FieldSection from './cvFieldType/FieldSection';
 import FieldText from './cvFieldType/FieldText';
 import FieldTitle from './cvFieldType/FieldTitle';
 
-export default function  ListeSelectorType(props:{onChanges:(key:number)  => void, delete:(id:any)  => void,id:number,type:string}) {
+export default function  ListeSelectorType(props:{onChanges:(id:number,type:string)  => void, onDelete:(id:any)  => void,onContentChange:(id:number,content:any)=>void,id:number,type:string}) {
   const[id] = useState(props.id)
-  const [stateType] = useState(props.type);
+  const [stateType,setStateType] = useState(props.type);
 
   let result
   switch(stateType) {
     case "title":
        result = <div>
-                  <FieldTitle/>
+                  <FieldTitle onContentChange={props.onContentChange} id={id}/>
                 </div>   
     break;
     case "text":
        result = <div>
-                  <FieldText />
+                  <FieldText onContentChange={props.onContentChange} id={id}/>
                 </div>   
     break;
     case "section":
        result = <div>
-                  <FieldSection/>
+                  <FieldSection onContentChange={props.onContentChange} id={id}/>
                 </div>   
     break;
     case "link":
       result = <div>
-                 <FieldLink/>
+                 <FieldLink onContentChange={props.onContentChange} id={id}/>
                </div>   
     break;
     case "list":
        result = <div>
-                  <FieldList/>
+                  <FieldList onContentChange={props.onContentChange} id={id} />
                 </div>   
     break;
     default:
       result= <div> 
-      <select onChange={()=>{props.onChanges(props.id);}} name="" id="">
-        <option value="">--Please choose an option--</option>
+      <select onChange={e=>{
+            console.log(id);
+            props.onChanges(props.id,e.target.value);
+            setStateType(e.target.value);
+          }
+        } name="" id="">
+        <option value="default">--Please choose an option╰(*°▽°*)╯--</option>
         <option value="title">Title</option>
         <option value="text">Textarea</option>
         <option value="list">Liste</option>
         <option value="section">Section</option>
         <option value="link">Link</option>
       </select>
-      <button onClick={() => props.delete(id)}>X</button>
+      <button onClick={() => props.onDelete(id)}>X</button>
     </div>
     break;
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function FieldLink() {
+export default function FieldLink(props:{onContentChange:(key:number,content:any)=>void, id:number}) {
     const [statePrewiew, setStatePrewiew] = useState(false);
     const [stateText, setStateText] = useState('');
     let result
@@ -14,6 +14,7 @@ export default function FieldLink() {
         {
             return null
         }
+        props.onContentChange(props.id, stateText)
         result = <a style={{width: "auto",margin:"0px auto"}} onClick={()=>{setStatePrewiew(false)}}>
             {stateText}
         </a>

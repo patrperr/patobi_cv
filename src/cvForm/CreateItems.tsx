@@ -6,14 +6,15 @@ import './../cvRessources/cvs/sampleCVJSON.json';
 import ListeSelectorType from './ListeSelectorType'
 
 
-export default function CreateItems() {
+export default function CreateItems(props:{id:number,onFormChange : (id:number, content:any) => void}) {
    const [items,setItems] = useState<any[]>([])
   
   function addComponent() { 
     let newItems : any[] = [...items];
-    let obj = {id:newItems.length}
-      newItems.push(obj);
-      setItems(newItems)
+    let obj = {id:newItems.length,type:'',content:''}
+    newItems.push(obj);
+    setItems(newItems);
+    props.onFormChange(props.id,newItems);
   }
 
   function deleteComponent(id = 0) { 
@@ -22,24 +23,25 @@ export default function CreateItems() {
 
     if(index >= 0){
       newItems.splice(index,1);
-      console.log(`deleted ${index}`)
-      console.log(newItems)
       setItems(newItems)
     }
   }
-  let onEachChange = (key:number = 0) =>{
-    console.log(items.length)
-   // console.log(items[items.length-1])
-    // console.log(items[key]);
+
+  let onContentChange = (id:number, content:any) =>{ 
+    items[id].fieldData = content;
+  }
+
+  let onTypeChange = (id:number, type:string = '') =>{
+    items[id].fieldType = type;
   }
 
    return (
     <div className='create-items'>
       <div>
         {
-          items.length ? 
+          items.length ?       
           items.map((data:any) => {
-            return <ListeSelectorType key={data.id} id={data.id} onChanges={() => onEachChange(data.id)} delete={() => deleteComponent(data.id)} type=''/>
+            return <ListeSelectorType onChanges={onTypeChange} onDelete={deleteComponent} onContentChange={onContentChange} id={data.id} type=''/>
           })
           : null
         }

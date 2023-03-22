@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function FieldText() {
+export default function FieldText(props:{onContentChange:(key:number,content:any)=>void, id:number}) {
     const [statePrewiew, setStatePrewiew] = useState(false);
     const [stateText, setStateText] = useState('');
     let result
@@ -14,6 +14,7 @@ export default function FieldText() {
         {
             return null
         }
+        props.onContentChange(props.id, stateText)
         result = <div style={{width: "auto",margin:"0px auto"}} onClick={()=>{setStatePrewiew(false)}}>
             {stateText}
         </div>
