@@ -11,16 +11,19 @@ export default function CreateItems(props:{id:number,onFormChange : (id:number, 
   
   function addComponent() { 
     let newItems : any[] = [...items];
-    let obj = {id:newItems.length,type:'',content:''}
+    let obj = {id:newItems.length,fieldType:''}
     newItems.push(obj);
+    
     setItems(newItems);
     props.onFormChange(props.id,newItems);
+    
   }
 
   function deleteComponent(id = 0) { 
+    
     let newItems : any[] = [...items];
     let index = newItems.findIndex(o => o.id === id)
-
+    console.log('del')
     if(index >= 0){
       newItems.splice(index,1);
       setItems(newItems)
@@ -32,16 +35,16 @@ export default function CreateItems(props:{id:number,onFormChange : (id:number, 
   }
 
   let onTypeChange = (id:number, type:string = '') =>{
+    console.log("type changed: ",items);
     items[id].fieldType = type;
   }
-
    return (
     <div className='create-items'>
       <div>
         {
           items.length ?       
           items.map((data:any) => {
-            return <ListeSelectorType onChanges={onTypeChange} onDelete={deleteComponent} onContentChange={onContentChange} id={data.id} type=''/>
+            return <ListeSelectorType onChanges={onTypeChange} onDelete={deleteComponent} onContentChange={onContentChange} id={data.id} type={data.fieldType}/>
           })
           : null
         }
@@ -53,7 +56,4 @@ export default function CreateItems(props:{id:number,onFormChange : (id:number, 
       </Button>
     </div>
   )
-
 }
-
-

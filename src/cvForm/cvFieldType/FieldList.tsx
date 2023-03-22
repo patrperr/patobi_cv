@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function FieldList(props:{onContentChange:(key:number,content:any)=>void, id:number}) {
+export default function FieldList(props:{onContentChange:(id:number,content:any)=>void, id:number}) {
     const [statePrewiew, setStatePrewiew] = useState(false);
     const [stateText, setStateText] = useState('');
     let result

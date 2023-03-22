@@ -39,7 +39,6 @@ export default function  ListeSelectorType(props:{onChanges:(id:number,type:stri
     default:
       result= <div> 
       <select onChange={e=>{
-            console.log(id);
             props.onChanges(props.id,e.target.value);
             setStateType(e.target.value);
           }
