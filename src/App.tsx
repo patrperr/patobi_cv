@@ -63,7 +63,7 @@ class App extends React.Component<props>{
           </div>
 
           <div className='content'>
-            <CreateItems />
+            <CreateItems id={1} onFormChange={()=>{}}/>
           </div>
         </div>
       );
