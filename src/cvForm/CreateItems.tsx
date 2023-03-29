@@ -4,56 +4,92 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import './../cvRessources/cvs/sampleCVJSON.json';
 import ListeSelectorType from './ListeSelectorType'
+import { ButtonGroup } from '@mui/material';
+import CPSection from '../cvdisplayer/CPSection';
 
 
-export default function CreateItems(props:{id:number,onFormChange : (id:number, content:any) => void}) {
-   const [items,setItems] = useState<any[]>([])
-  
-  function addComponent() { 
-    let newItems : any[] = [...items];
-    let obj = {id:newItems.length,fieldType:''}
+
+export default function CreateItems(this: any, props: { id: number, onFormChange: (id: number, content: any) => void }) {
+  const [items, setItems] = useState<any[]>([])
+  const [isPreview, setIsPrewiew] = useState(Boolean)
+
+  function addComponent() {
+    let newItems: any[] = [...items];
+    let obj = { id: newItems.length, fieldType: '' }
     newItems.push(obj);
-    
+
     setItems(newItems);
-    props.onFormChange(props.id,newItems);
-    
+    setIsPrewiew(false);
+    props.onFormChange(props.id, newItems);
+
   }
 
-  function deleteComponent(id = 0) { 
-    
-    let newItems : any[] = [...items];
+  function deleteComponent(id = 0) {
+
+    let newItems: any[] = [...items];
     let index = newItems.findIndex(o => o.id === id)
     console.log('del')
-    if(index >= 0){
-      newItems.splice(index,1);
+    if (index >= 0) {
+      newItems.splice(index, 1);
       setItems(newItems)
     }
   }
 
-  let onContentChange = (id:number, content:any) =>{ 
+  const onContentChange = (id: number, content: any) => {
     items[id].fieldData = content;
   }
 
-  let onTypeChange = (id:number, type:string = '') =>{
-    console.log("type changed: ",items);
+  const onTypeChange = (id: number, type: string = '') => {
+    console.log("type changed: ", items);
     items[id].fieldType = type;
   }
-   return (
-    <div className='create-items'>
-      <div>
+
+
+  return (
+    <div>
+      <div className='sub-menu-buttons'>
         {
-          items.length ?       
-          items.map((data:any) => {
-            return <ListeSelectorType onChanges={onTypeChange} onDelete={deleteComponent} onContentChange={onContentChange} id={data.id} type={data.fieldType}/>
-          })
-          : null
+          isPreview ?
+          <ButtonGroup aria-label="large button group">
+          <Button onClick={() => { setIsPrewiew(false) }}>Edit CV</Button>
+          <Button onClick={() => { setIsPrewiew(true) }} variant="contained">Preview CV</Button>
+        </ButtonGroup>
+        :
+        <ButtonGroup aria-label="large button group">
+          <Button onClick={() => { setIsPrewiew(false) }} variant="contained">Edit CV</Button>
+          <Button onClick={() => { setIsPrewiew(true) }}>Preview CV</Button>
+        </ButtonGroup>
+
         }
+        
       </div>
-      <Button  className='create-items-add-button' variant="outlined" onClick={
-        addComponent
-      } endIcon={<AddIcon />}>
-        Create item
-      </Button>
+      {
+        isPreview ?
+        items.map(section => {
+          return (<div key={section.id} className="section-grand-parent-div">
+            <CPSection sectionToDiplay={section} level={1} isChild={false} />
+          </div>)
+        })
+        :
+          <div className='create-items'>
+            <div>
+              {
+                items.length ?
+                  items.map((data: any) => {
+                    return <ListeSelectorType onChanges={onTypeChange} onDelete={deleteComponent} onContentChange={onContentChange} id={data.id} type={data.fieldType} />
+                  })
+                  : null
+              }
+            </div>
+            <Button className='create-items-add-button' variant="outlined" onClick={
+              addComponent
+            } endIcon={<AddIcon />}>
+              Create item
+            </Button>
+          </div>
+
+      }
+
     </div>
   )
 }

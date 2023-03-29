@@ -14,7 +14,7 @@ export default function FieldTitle(props:{onContentChange:(id:number,content:any
         {
             return null
         }
-        props.onContentChange(props.id, stateText)
+        props.onContentChange(props.id, [stateText])
         result = <h1 style={{width: "fit-content",margin:"0px auto"}} onClick={()=>{setStatePrewiew(false)}}>
             {stateText}
         </h1>

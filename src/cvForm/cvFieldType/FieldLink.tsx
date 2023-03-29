@@ -14,7 +14,7 @@ export default function FieldLink(props:{onContentChange:(id:number,content:any)
         {
             return null
         }
-        props.onContentChange(props.id, stateText)
+        props.onContentChange(props.id, [stateText])
         result = <a style={{width: "auto",margin:"0px auto"}} onClick={()=>{setStatePrewiew(false)}}>
             {stateText}
         </a>

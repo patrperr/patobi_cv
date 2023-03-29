@@ -124,6 +124,14 @@ body.dark {
 .dark .menu-buttons {
   margin: auto;
 }
+
+.light .sub-menu-buttons{
+  margin-bottom: 30px;
+}
+
+.dark .sub-menu-buttons{
+  margin-bottom: 30px;
+}
 /*---------------  buttons -----------------*/
 
  .light button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonGroup-grouped.MuiButtonGroup-groupedHorizontal.MuiButtonGroup-groupedOutlined.MuiButtonGroup-groupedOutlinedHorizontal.MuiButtonGroup-groupedOutlinedPrimary.css-1rwt2y5-MuiButtonBase-root-MuiButton-root{
