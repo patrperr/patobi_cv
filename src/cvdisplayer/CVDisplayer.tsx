@@ -2,7 +2,7 @@ import { ChangeEvent, Component } from 'react'
 import { CVObject } from '../types'
 import CV from '../cvRessources/cvs/sampleCVJSON.json'
 import CPSection from './CPSection';
-import { Alert, Button, Snackbar } from '@mui/material';
+import { Alert, Button, Divider, Snackbar } from '@mui/material';
 import { FileUploadOutlined, FolderOpen } from '@mui/icons-material';
 import '../App.css'
 
@@ -22,7 +22,7 @@ export class CVDisplayer extends Component<{}, {
       cvToDisplay: new CVObject(),
       showSuccessSnack: false,
       showErrorSnack: false,
-      uploadIsActive:false
+      uploadIsActive: false
     };
   }
 
@@ -51,7 +51,7 @@ export class CVDisplayer extends Component<{}, {
         if (result !== undefined) {
           newCV = JSON.parse(result);
         }
-        this.setState({ cvToDisplay: newCV, showSuccessSnack: true, uploadIsActive:false });
+        this.setState({ cvToDisplay: newCV, showSuccessSnack: true, uploadIsActive: false });
       };
 
       // console.log(this.state.cvToDisplay);//!
@@ -70,7 +70,7 @@ export class CVDisplayer extends Component<{}, {
 
   SelectFileToUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      this.setState({ fileReference: e.target.files[0], uploadIsActive : true });
+      this.setState({ fileReference: e.target.files[0], uploadIsActive: true });
     }
   }
 
@@ -88,13 +88,64 @@ export class CVDisplayer extends Component<{}, {
               Select a CV
               <input type="file" hidden onChange={this.SelectFileToUpload} />
             </Button>
-            <Button variant='contained' style={{marginLeft:"20px"}} startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} /*hidden={this.state.uploadIsActive}*/ disabled={!this.state.uploadIsActive}>Upload CV</Button>
+            <Button variant='contained' style={{ marginLeft: "20px" }} startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} /*hidden={this.state.uploadIsActive}*/ disabled={!this.state.uploadIsActive}>Upload CV</Button>
           </div>
           <p className='file-input-span'>{this.state.fileReference?.name}</p>
           <br />
 
         </div>
+
         <div className='all-sections'>
+          <div className='cv-general-data'>
+            <h1> {this.state.cvToDisplay.firstName} {this.state.cvToDisplay.name}</h1>
+            <table className='cv-general-data-table'>
+
+              <Divider className='divider' textAlign="left" sx={{
+                "&::before, &::after": {
+                  borderColor: "#384561",
+                }
+              }}>General information</Divider>
+
+              <tr>
+                <td><p><strong>First name :</strong> {this.state.cvToDisplay.firstName}</p></td>
+                <td><p><strong>Last name :</strong> {this.state.cvToDisplay.name}</p></td>
+              </tr>
+
+              <tr>
+                <td><p><strong>Birthdate :</strong> {this.state.cvToDisplay.birthDate}</p></td>
+              </tr>
+
+              <Divider className='divider' textAlign="left" sx={{
+                "&::before, &::after": {
+                  borderColor: "#384561",
+                }
+              }}>Contact information</Divider>
+
+              <tr>
+                <td><p><strong>Adress :</strong> {this.state.cvToDisplay.address} {this.state.cvToDisplay.housenumber}</p></td>
+                <td><p><strong>Locality :</strong> {this.state.cvToDisplay.npa}  {this.state.cvToDisplay.city}</p></td>
+              </tr>
+
+              <tr>
+                <td><p><strong>Country :</strong> {this.state.cvToDisplay.country}</p></td>
+                <td><p><strong>Region :</strong> {this.state.cvToDisplay.state}</p></td>
+              </tr>
+
+              <tr>
+                <td><p><strong>E-Mail :</strong> {this.state.cvToDisplay.email}</p></td>
+                <td><p><strong>Phone :</strong> {this.state.cvToDisplay.phone}</p></td>
+              </tr>
+              
+              <Divider className='divider' textAlign="left" sx={{
+                "&::before, &::after": {
+                  borderColor: "#384561",
+                }
+              }}>CV</Divider>
+            </table>
+
+
+
+          </div>
           {
             this.state.cvToDisplay.allSections?.map(section => {
               keynumber++;

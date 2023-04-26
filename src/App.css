@@ -64,6 +64,12 @@ body.dark {
   background-color: rgb(32, 37, 48);
 }
 
+ .divider{
+  width: 200%;
+  margin-top:25px !important; 
+}
+
+
 /*---------------  Menu -----------------*/
 .light .menu {
   margin-bottom: 20px;
@@ -251,6 +257,15 @@ body.dark {
 .dark .file-input-buttons {
   display: flex;
   margin-left: 20px;
+}
+
+.cv-general-data{
+  margin-bottom: 50px;
+}
+
+.cv-general-data-table{
+  width: 100%;
+  text-align: left;
 }
 
 /* ----------------- section ----------------------- */

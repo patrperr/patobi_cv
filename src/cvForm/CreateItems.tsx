@@ -6,6 +6,7 @@ import './../cvRessources/cvs/sampleCVJSON.json';
 import ListeSelectorType from './ListeSelectorType'
 import { ButtonGroup } from '@mui/material';
 import CPSection from '../cvdisplayer/CPSection';
+import { FileUploadOutlined, FolderOpen } from '@mui/icons-material';
 
 
 
@@ -48,29 +49,42 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
   return (
     <div>
       <div className='sub-menu-buttons'>
+        <div className='file-input'>
+          <div className='file-input-buttons'>
+            <Button variant="contained" startIcon={<FolderOpen />} component="label" color="primary">
+              {" "}
+              Select a CV
+              <input type="file" hidden  />
+            </Button>
+            <Button variant='contained' style={{ marginLeft: "20px" }} startIcon={<FileUploadOutlined />} /*hidden={this.state.uploadIsActive}*/ >Upload CV</Button>
+          </div>
+          <p className='file-input-span'></p>
+          <br />
+
+        </div>
         {
           isPreview ?
-          <ButtonGroup aria-label="large button group">
-          <Button onClick={() => { setIsPrewiew(false) }}>Edit CV</Button>
-          <Button onClick={() => { setIsPrewiew(true) }} variant="contained">Preview CV</Button>
-        </ButtonGroup>
-        :
-        <ButtonGroup aria-label="large button group">
-          <Button onClick={() => { setIsPrewiew(false) }} variant="contained">Edit CV</Button>
-          <Button onClick={() => { setIsPrewiew(true) }}>Preview CV</Button>
-        </ButtonGroup>
+            <ButtonGroup aria-label="large button group">
+              <Button onClick={() => { setIsPrewiew(false) }}>Edit CV</Button>
+              <Button onClick={() => { setIsPrewiew(true) }} variant="contained">Preview CV</Button>
+            </ButtonGroup>
+            :
+            <ButtonGroup aria-label="large button group">
+              <Button onClick={() => { setIsPrewiew(false) }} variant="contained">Edit CV</Button>
+              <Button onClick={() => { setIsPrewiew(true) }}>Preview CV</Button>
+            </ButtonGroup>
 
         }
-        
+
       </div>
       {
         isPreview ?
-        items.map(section => {
-          return (<div key={section.id} className="section-grand-parent-div">
-            <CPSection sectionToDiplay={section} level={1} isChild={false} />
-          </div>)
-        })
-        :
+          items.map(section => {
+            return (<div key={section.id} className="section-grand-parent-div">
+              <CPSection sectionToDiplay={section} level={1} isChild={false} />
+            </div>)
+          })
+          :
           <div className='create-items'>
             <div>
               {
