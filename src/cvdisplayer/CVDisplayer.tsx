@@ -5,6 +5,7 @@ import CPSection from './CPSection';
 import { Alert, Button, Divider, Snackbar } from '@mui/material';
 import { FileUploadOutlined, FolderOpen } from '@mui/icons-material';
 import '../App.css'
+import { UploadNewCV } from '../toolbox/jsonManager';
 
 
 export class CVDisplayer extends Component<{}, {
@@ -36,37 +37,29 @@ export class CVDisplayer extends Component<{}, {
     this.setState({ cvToDisplay: cvToDisplayNoState });
   }
 
-  UploadNewCV() {
-    // console.log("UploadNewCV"); //!
-    if (this.state.fileReference !== undefined) {
-      // console.log(this.state.fileReference); //!
-      const fileReader = new FileReader();
-      let newCV: CVObject;
-
-      fileReader.readAsText(this.state.fileReference, "UTF-8");
-      fileReader.onload = e => {
-        const target = e.target;
-        const result: string | undefined = target?.result?.toString();
-        // console.log(result);//!
-        if (result !== undefined) {
-          newCV = JSON.parse(result);
-        }
-        this.setState({ cvToDisplay: newCV, showSuccessSnack: true, uploadIsActive: false });
-      };
-
-      // console.log(this.state.cvToDisplay);//!
-
-    } else {
-      this.setState({ showErrorSnack: true })
-    }
-  }
-
   ShowSuccessSnack() { this.setState({ showSuccessSnack: true }) }
   HideSuccessSnack() { this.setState({ showSuccessSnack: false }) }
   ShowErrorSnack() { this.setState({ showErrorSnack: true }) }
   HideErrorSnack() { this.setState({ showErrorSnack: false }) }
 
-
+  handleUploadCV = () => {
+    const fileReference: File | undefined = this.state.fileReference;
+    
+    UploadNewCV(fileReference)
+      .then(({ newCV, showSuccessSnack, uploadIsActive, showErrorSnack }) => {
+        // Handle the updated values here
+        if (newCV) {
+          this.setState({ cvToDisplay: newCV});
+        }
+        this.setState({ showSuccessSnack: showSuccessSnack });
+        this.setState({ uploadIsActive: uploadIsActive });
+        this.setState({ showErrorSnack: showErrorSnack });
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the process
+        console.error(error);
+      });
+  };
 
   SelectFileToUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -88,7 +81,7 @@ export class CVDisplayer extends Component<{}, {
               Select a CV
               <input type="file" hidden onChange={this.SelectFileToUpload} />
             </Button>
-            <Button variant='contained' style={{ marginLeft: "20px" }} startIcon={<FileUploadOutlined />} onClick={this.UploadNewCV.bind(this)} /*hidden={this.state.uploadIsActive}*/ disabled={!this.state.uploadIsActive}>Upload CV</Button>
+            <Button variant='contained' style={{ marginLeft: "20px" }} startIcon={<FileUploadOutlined />} onClick={ this.handleUploadCV } /*hidden={this.state.uploadIsActive}*/ disabled={!this.state.uploadIsActive}>Upload CV</Button>
           </div>
           <p className='file-input-span'>{this.state.fileReference?.name}</p>
           <br />

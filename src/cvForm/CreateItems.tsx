@@ -7,12 +7,18 @@ import ListeSelectorType from './ListeSelectorType'
 import { ButtonGroup } from '@mui/material';
 import CPSection from '../cvdisplayer/CPSection';
 import { FileUploadOutlined, FolderOpen } from '@mui/icons-material';
+import { UploadNewCV } from '../toolbox/jsonManager';
+import { CVObject } from '../types';
 
 
 
 export default function CreateItems(this: any, props: { id: number, onFormChange: (id: number, content: any) => void }) {
   const [items, setItems] = useState<any[]>([])
   const [isPreview, setIsPrewiew] = useState(Boolean)
+  const [fileReference, setFileReference] = useState<File | undefined>(undefined);
+  const [showSuccessSnack, setShowSuccessSnack] = useState<boolean | undefined>(undefined);
+  const [uploadIsActive, setUploadIsActive] = useState<boolean | undefined>(undefined);
+  const [showErrorSnack, setShowErrorSnack] = useState<boolean | undefined>(undefined);
 
   function addComponent() {
     let newItems: any[] = [...items];
@@ -36,6 +42,23 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
     }
   }
 
+  const handleUploadCV = () => {
+    UploadNewCV(fileReference)
+      .then(({ newCV, showSuccessSnack, uploadIsActive, showErrorSnack }) => {
+        // Handle the updated values here
+        if (newCV) {
+          setCvToDisplay(newCV);
+        }
+        setShowSuccessSnack(showSuccessSnack);
+        setUploadIsActive(uploadIsActive);
+        setShowErrorSnack(showErrorSnack);
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the process
+        console.error(error);
+      });
+  };
+  
   const onContentChange = (id: number, content: any) => {
     items[id].fieldData = content;
   }
@@ -56,7 +79,7 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
               Select a CV
               <input type="file" hidden  />
             </Button>
-            <Button variant='contained' style={{ marginLeft: "20px" }} startIcon={<FileUploadOutlined />} /*hidden={this.state.uploadIsActive}*/ >Upload CV</Button>
+            <Button variant='contained' style={{ marginLeft: "20px" }} onClick={ handleUploadCV } startIcon={<FileUploadOutlined />} /*hidden={this.state.uploadIsActive}*/ >Upload CV</Button>
           </div>
           <p className='file-input-span'></p>
           <br />
@@ -106,4 +129,8 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
 
     </div>
   )
+}
+
+function setCvToDisplay(newCV: CVObject) {
+  throw new Error('Function not implemented.');
 }
