@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import "./styles/createItems.css"
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -19,6 +19,8 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
   const [showSuccessSnack, setShowSuccessSnack] = useState<boolean | undefined>(undefined);
   const [uploadIsActive, setUploadIsActive] = useState<boolean | undefined>(undefined);
   const [showErrorSnack, setShowErrorSnack] = useState<boolean | undefined>(undefined);
+  const [cvToDisplay, setcvToDisplay] = useState<CVObject | undefined>(undefined);
+
 
   function addComponent() {
     let newItems: any[] = [...items];
@@ -47,7 +49,7 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
       .then(({ newCV, showSuccessSnack, uploadIsActive, showErrorSnack }) => {
         // Handle the updated values here
         if (newCV) {
-          setCvToDisplay(newCV);
+          setcvToDisplay(newCV);
         }
         setShowSuccessSnack(showSuccessSnack);
         setUploadIsActive(uploadIsActive);
@@ -69,6 +71,13 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
   }
 
 
+  const SelectFileToUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFileReference(e.target.files[0]); 
+      setUploadIsActive(true);
+    }
+  }
+
   return (
     <div>
       <div className='sub-menu-buttons'>
@@ -77,11 +86,13 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
             <Button variant="contained" startIcon={<FolderOpen />} component="label" color="primary">
               {" "}
               Select a CV
-              <input type="file" hidden  />
+              <input type="file" hidden onChange={SelectFileToUpload} />
             </Button>
             <Button variant='contained' style={{ marginLeft: "20px" }} onClick={ handleUploadCV } startIcon={<FileUploadOutlined />} /*hidden={this.state.uploadIsActive}*/ >Upload CV</Button>
-          </div>
-          <p className='file-input-span'></p>
+          
+            <span className='file-input-span'>{fileReference?.name}</span>
+            </div>
+          
           <br />
 
         </div>
@@ -102,11 +113,12 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
       </div>
       {
         isPreview ?
-          items.map(section => {
-            return (<div key={section.id} className="section-grand-parent-div">
+        cvToDisplay?.allSections && cvToDisplay?.allSections.map(section => {
+            return (<div key={section.title} className="section-grand-parent-div">
               <CPSection sectionToDiplay={section} level={1} isChild={false} />
             </div>)
           })
+
           :
           <div className='create-items'>
             <div>
@@ -131,6 +143,4 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
   )
 }
 
-function setCvToDisplay(newCV: CVObject) {
-  throw new Error('Function not implemented.');
-}
+

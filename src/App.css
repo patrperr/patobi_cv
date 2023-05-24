@@ -173,6 +173,10 @@ body.dark {
   border: #6a6c70;
 }
 
+.dark #root > div > div.content > div > div.sub-menu-buttons > div.file-input > div > button > span.MuiButton-startIcon.MuiButton-iconSizeMedium.css-1d6wzja-MuiButton-startIcon > svg {
+  color: #242a4b;
+}
+
 
 .light div.content > div > div.file-input > div > label{
   color: #f3f3f3;
@@ -248,6 +252,7 @@ body.dark {
 .dark .file-input-span {
   margin-left: 20px;
   margin-top: 5px;
+  color: #f3f3f3;
 }
 
 .light .file-input-buttons {
@@ -364,6 +369,7 @@ body.dark {
 .dark .section-text {
   text-align: justify;
   text-justify: inter-word;
+  color: #f3f3f3;
 }
 
 
@@ -427,6 +433,7 @@ body.dark {
 .dark .section-list-element {
   margin-top: 7px;
   margin-bottom: 7px;
+  color: #f3f3f3;
 }
 
 
