@@ -283,6 +283,7 @@ body.dark {
   margin: auto;
   width: 65%;
   max-width: 1000px;
+  color: #f3f3f3;
 }
 
 /* .light .section-div {} */
@@ -443,7 +444,22 @@ body.dark {
 
 
 
+/* ----------------- forms -------------------------- */
 
+.general-information-entry{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f3f3f3;
+}
+
+.general-information-entry-form{
+  color: #f3f3f3 !important;
+} 
+#root > div > div.content > div > div.create-items > div.general-information-entry > table{
+  color: #f3f3f3 !important;
+}
 
 /* -------------------------- mobile -------------------------- */
 

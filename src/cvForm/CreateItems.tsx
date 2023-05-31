@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import './../cvRessources/cvs/sampleCVJSON.json';
 import ListeSelectorType from './ListeSelectorType'
-import { ButtonGroup } from '@mui/material';
+import { ButtonGroup, Divider, TextField } from '@mui/material';
 import CPSection from '../cvdisplayer/CPSection';
 import { FileUploadOutlined, FolderOpen } from '@mui/icons-material';
 import { UploadNewCV } from '../toolbox/jsonManager';
@@ -12,7 +12,7 @@ import { CVObject } from '../types';
 
 
 
-export default function CreateItems(this: any, props: { id: number, onFormChange: (id: number, content: any) => void }) {
+export default function CreateItems(props: { id: number, onFormChange: (id: number, content: any) => void }) {
   const [items, setItems] = useState<any[]>([])
   const [isPreview, setIsPrewiew] = useState(Boolean)
   const [fileReference, setFileReference] = useState<File | undefined>(undefined);
@@ -60,7 +60,7 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
         console.error(error);
       });
   };
-  
+
   const onContentChange = (id: number, content: any) => {
     items[id].fieldData = content;
   }
@@ -73,10 +73,17 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
 
   const SelectFileToUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFileReference(e.target.files[0]); 
+      setFileReference(e.target.files[0]);
       setUploadIsActive(true);
     }
   }
+
+
+  const handleChange = (event: { target: { name: any; value: any; }; }) => {
+    const { name, value } = event.target;
+  };
+
+
 
   return (
     <div>
@@ -88,11 +95,11 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
               Select a CV
               <input type="file" hidden onChange={SelectFileToUpload} />
             </Button>
-            <Button variant='contained' style={{ marginLeft: "20px" }} onClick={ handleUploadCV } startIcon={<FileUploadOutlined />} /*hidden={this.state.uploadIsActive}*/ >Upload CV</Button>
-          
+            <Button variant='contained' style={{ marginLeft: "20px" }} onClick={handleUploadCV} startIcon={<FileUploadOutlined />} /*hidden={this.state.uploadIsActive}*/ >Upload CV</Button>
+
             <span className='file-input-span'>{fileReference?.name}</span>
-            </div>
-          
+          </div>
+
           <br />
 
         </div>
@@ -113,11 +120,64 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
       </div>
       {
         isPreview ?
-        cvToDisplay?.allSections && cvToDisplay?.allSections.map(section => {
-            return (<div key={section.title} className="section-grand-parent-div">
-              <CPSection sectionToDiplay={section} level={1} isChild={false} />
-            </div>)
-          })
+          <div className='all-sections'>
+            <div className='cv-general-data'>
+              <h1> {cvToDisplay?.firstName} {cvToDisplay?.name}</h1>
+              <table className='cv-general-data-table'>
+
+                <Divider className='divider' textAlign="left" sx={{
+                  "&::before, &::after": {
+                    borderColor: "#384561",
+                  }
+                }}>General information</Divider>
+
+                <tr>
+                  <td><p><strong>First name :</strong> {cvToDisplay?.firstName}</p></td>
+                  <td><p><strong>Last name :</strong> {cvToDisplay?.name}</p></td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>Birthdate :</strong> {cvToDisplay?.birthDate}</p></td>
+                </tr>
+
+                <Divider className='divider' textAlign="left" sx={{
+                  "&::before, &::after": {
+                    borderColor: "#384561",
+                  }
+                }}>Contact information</Divider>
+
+                <tr>
+                  <td><p><strong>Adress :</strong> {cvToDisplay?.address} {cvToDisplay?.housenumber}</p></td>
+                  <td><p><strong>Locality :</strong> {cvToDisplay?.npa}  {cvToDisplay?.city}</p></td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>Country :</strong> {cvToDisplay?.country}</p></td>
+                  <td><p><strong>Region :</strong> {cvToDisplay?.state}</p></td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>E-Mail :</strong> {cvToDisplay?.email}</p></td>
+                  <td><p><strong>Phone :</strong> {cvToDisplay?.phone}</p></td>
+                </tr>
+
+                <Divider className='divider' textAlign="left" sx={{
+                  "&::before, &::after": {
+                    borderColor: "#384561",
+                  }
+                }}>CV</Divider>
+              </table>
+              {cvToDisplay?.allSections && cvToDisplay?.allSections.map(section => {
+                return (
+                  <>
+                    <div key={section.title} className="section-grand-parent-div">
+                      <CPSection sectionToDiplay={section} level={1} isChild={false} />
+                    </div>
+                  </>)
+              })}
+            </div>
+          </div>
+
 
           :
           <div className='create-items'>
@@ -130,6 +190,120 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
                   : null
               }
             </div>
+
+            <div className="general-information-entry">
+              <table>
+                <tr>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="First Name"
+                      name="firstName"
+                      value="firstName"
+                      onChange={handleChange}
+                      color="warning"
+                      required
+                    />
+                  </td>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Last Name"
+                      name="lastName"
+                      value="lastName"
+                      onChange={handleChange}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Birthdate"
+                      name="birthdate"
+                      value="birthdate"
+                      onChange={handleChange}
+                      style={{marginTop:'10px'}}
+                      required
+                    />
+                  </td>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Address"
+                      name="address"
+                      value="address"
+                      onChange={handleChange}
+                      style={{marginTop:'10px'}}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Locality"
+                      name="locality"
+                      value="locality"
+                      onChange={handleChange}
+                      style={{marginTop:'10px'}}
+                      required
+                    />
+                  </td>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Country"
+                      name="country"
+                      value="country"
+                      onChange={handleChange}
+                      style={{marginTop:'10px'}}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Region"
+                      name="region"
+                      value="region"
+                      onChange={handleChange}
+                      style={{marginTop:'10px'}}
+                      required
+                    />
+                  </td>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="E-Mail"
+                      name="email"
+                      value="E-Mail"
+                      onChange={handleChange}
+                      style={{marginTop:'10px'}}
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <TextField
+                    className='general-information-entry-form'
+                      label="Phone"
+                      name="phone"
+                      value="Phone"
+                      onChange={handleChange}
+                      style={{marginTop:'10px', marginBottom:'25px'}}
+                      required
+                    />
+                  </td>
+                </tr>
+              </table>
+            </div>
+
             <Button className='create-items-add-button' variant="outlined" onClick={
               addComponent
             } endIcon={<AddIcon />}>
@@ -142,5 +316,3 @@ export default function CreateItems(this: any, props: { id: number, onFormChange
     </div>
   )
 }
-
-
