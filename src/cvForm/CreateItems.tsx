@@ -192,7 +192,8 @@ export default function CreateItems(props: { id: number, onFormChange: (id: numb
             </div>
 
             <div className="general-information-entry">
-              <table>
+              <table className="general-information-table">
+                <h3 className="general-information-title">General informations</h3>
                 <tr>
                   <td>
                     <TextField
@@ -201,7 +202,6 @@ export default function CreateItems(props: { id: number, onFormChange: (id: numb
                       name="firstName"
                       value="firstName"
                       onChange={handleChange}
-                      color="warning"
                       required
                     />
                   </td>

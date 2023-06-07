@@ -454,13 +454,31 @@ body.dark {
   color: #f3f3f3;
 }
 
-.general-information-entry-form{
-  color: #f3f3f3 !important;
-} 
-#root > div > div.content > div > div.create-items > div.general-information-entry > table{
-  color: #f3f3f3 !important;
+.dark .general-information-table {
+  background-color: #7282b4;
+  padding: 30px;
+  margin-bottom: 40px;
+  border-radius: 10px;
 }
 
+.light .general-information-table {
+  background-color: #a2abc9;
+  padding: 30px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+}
+
+.light .general-information-title{
+padding-bottom: 15px;
+color: #242a4b;
+margin-top: -10px;
+}
+
+.dark .general-information-title{
+  color: #242a4b;
+  padding-bottom: 15px;
+  margin-top: -10px;
+}
 /* -------------------------- mobile -------------------------- */
 
 @media only screen and (max-width: 700px) {
